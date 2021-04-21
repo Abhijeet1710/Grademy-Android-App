@@ -1,11 +1,12 @@
-package com.edtechgrademy.com.grademy
+package com.edtechgrademy.com.grademy.view
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.edtechgrademy.com.grademy.databinding.ActivitySignupBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -16,14 +17,16 @@ import com.google.firebase.auth.GoogleAuthProvider
 
 class SignupActivity : AppCompatActivity() {
 
+    lateinit var binding : ActivitySignupBinding
+
     private lateinit var mAuth : FirebaseAuth
     private lateinit var googleSignInClient : GoogleSignInClient
     private val RC_SIGN_IN = 1
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivitySignupBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken("1053654775130-bleme6ap9gvnial3gg77khe3bb9g2qva.apps.googleusercontent.com")
@@ -33,23 +36,24 @@ class SignupActivity : AppCompatActivity() {
         googleSignInClient = GoogleSignIn.getClient(this, gso)
         mAuth = FirebaseAuth.getInstance()
 
-        findViewById<Button>(R.id.btnSignIn).setOnClickListener {
+        binding.btnSignIn.setOnClickListener {
+            binding.btnSignIn.visibility = View.GONE
+            binding.pbLoading.visibility = View.VISIBLE
             signIn()
+            binding.btnSignIn.visibility = View.GONE
+            binding.pbLoading.visibility = View.VISIBLE
         }
-
 
     }
 
-
     private fun signIn() {
-        val signInIntent: Intent = googleSignInClient.getSignInIntent()
+        val signInIntent: Intent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             val exception = task.exception
@@ -58,13 +62,11 @@ class SignupActivity : AppCompatActivity() {
                     val account = task.getResult(ApiException::class.java)!!
                     firebaseAuthWithGoogle(account.idToken!!)
                 } catch (e: ApiException) {
-                    Log.d("SignInActivity", "Failed", e)
-                    Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Auth Failed \n ${e.message}", Toast.LENGTH_SHORT).show()
                 }
             }else{
-                Log.d("SignInActivity", exception.toString())
+                Toast.makeText(this, "Internal Error", Toast.LENGTH_SHORT).show()
             }
-
         }
     }
 
@@ -73,14 +75,12 @@ class SignupActivity : AppCompatActivity() {
         mAuth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
                         val user = mAuth.currentUser
                         val intent = Intent(applicationContext, DashboardActivity::class.java)
                         startActivity(intent)
                         finish()
                     } else {
-                        Toast.makeText(this, "Sorry auth failed.", Toast.LENGTH_SHORT)
-                            .show()
+                        Toast.makeText(this, "Auth failed.", Toast.LENGTH_SHORT).show()
                     }
             }
     }

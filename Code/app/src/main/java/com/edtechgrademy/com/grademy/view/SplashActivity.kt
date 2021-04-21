@@ -1,10 +1,11 @@
-package com.edtechgrademy.com.grademy
+package com.edtechgrademy.com.grademy.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import com.edtechgrademy.com.grademy.R
 import com.google.firebase.auth.FirebaseAuth
 
 class SplashActivity : AppCompatActivity() {
