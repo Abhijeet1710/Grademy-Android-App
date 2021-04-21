@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1053654775130",
+    "project_id": "grademy-e155a",
+    "storage_bucket": "grademy-e155a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1053654775130:android:ba9eb9bc19319332efef63",
+        "android_client_info": {
+          "package_name": "com.edtechgrademy.com.grademy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1053654775130-bleme6ap9gvnial3gg77khe3bb9g2qva.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOR42YifPRbR3IwDGlPYvLwef2pxNwc6Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1053654775130-bleme6ap9gvnial3gg77khe3bb9g2qva.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

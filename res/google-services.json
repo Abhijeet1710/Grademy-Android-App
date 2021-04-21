@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "102593662550",
+    "project_id": "grademy-da8f2",
+    "storage_bucket": "grademy-da8f2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:102593662550:android:5a54adba9fc1e5af7bf5f7",
+        "android_client_info": {
+          "package_name": "com.grademy.com.grademy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "102593662550-mt34pdehq48nhrv1id37aphk31mqm1qq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.grademy.com.grademy",
+            "certificate_hash": "fe62dc56009578208a80e7ffcd3b85b7b3c7021a"
+          }
+        },
+        {
+          "client_id": "102593662550-biqn1lgpd45h5a98e502dsmpmm5i0p6q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIvv0IQxPLivRa-Xpy6R-546lHLnvQTaM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "102593662550-biqn1lgpd45h5a98e502dsmpmm5i0p6q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

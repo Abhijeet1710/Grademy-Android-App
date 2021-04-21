@@ -1,4 +1,4 @@
-package com.grademy.com.grademy
+package com.edtechgrademy.com.grademy
 
 import org.junit.Test
 
