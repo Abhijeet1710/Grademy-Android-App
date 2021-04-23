@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
-        <activity android:theme="@style/Theme.Grademy" android:name=".view.SettingsActivity"></activity>
+
         <activity
             android:theme="@style/Theme.GrademySplash"
             android:name=".view.SplashActivity">
@@ -19,8 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:theme="@style/Theme.Grademy" android:name=".view.SignupActivity" />
-        <activity android:theme="@style/Theme.Grademy" android:name=".view.DashboardActivity" />
+
+        <activity android:theme="@style/Theme.GrademyDashboard" android:name=".view.DashboardActivity" />
+
     </application>
 
 </manifest>

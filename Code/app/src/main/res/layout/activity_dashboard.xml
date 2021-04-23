@@ -7,7 +7,7 @@
     tools:context=".view.DashboardActivity"
     android:background="@color/white"
     android:orientation="vertical"
-    android:elevation="10dp">
+    android:elevation="20dp">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -15,22 +15,26 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            app:titleTextColor="@color/white"
+            app:titleTextColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"/>
+            android:background="@color/white"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
 
 
     <FrameLayout
-        android:id="@+id/container"
+        android:id="@+id/flContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FBFBFB"
+            android:elevation="15dp"/>
 
     </FrameLayout>
 

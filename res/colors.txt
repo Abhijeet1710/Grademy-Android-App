@@ -1,0 +1,3 @@
+blue fent - #8767E1
+blue dark - #6231EE
+sign in btn back - #A587F9
