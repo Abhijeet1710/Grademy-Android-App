@@ -5,7 +5,8 @@
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorSecondary">@color/light_blue</item>
         <item name="colorOnSecondary">@color/black</item>
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="l">true</item>
     </style>
 
     <style name="Theme.GrademyDashboard" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -14,8 +15,8 @@
         <item name="android:textColorSecondary">@color/white2</item>
         <item name="colorSecondary">@color/light_blue</item>
         <item name="colorOnSecondary">@color/black</item>
-        <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="l">true</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/light_blue</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="l">false</item>
         <item name="drawerArrowStyle">@style/DrawerIcon</item>
     </style>
 

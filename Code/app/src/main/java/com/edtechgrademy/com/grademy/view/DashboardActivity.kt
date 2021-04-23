@@ -4,6 +4,8 @@ import android.content.Intent
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
@@ -11,6 +13,8 @@ import androidx.fragment.app.Fragment
 import com.edtechgrademy.com.grademy.R
 import com.edtechgrademy.com.grademy.databinding.ActivityDashboardBinding
 import com.edtechgrademy.com.grademy.view.fragment.HomeFragment
+import com.edtechgrademy.com.grademy.view.fragment.ProfileFragment
+import com.edtechgrademy.com.grademy.view.fragment.SettingsFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.yarolegovich.slidingrootnav.SlideGravity
 import com.yarolegovich.slidingrootnav.SlidingRootNav
@@ -30,16 +34,16 @@ class DashboardActivity : AppCompatActivity() {
         init()
 
         findViewById<LinearLayout>(R.id.btnHome).setOnClickListener {
-            makeSelectedActive(R.id.tvHome, R.id.tvProfile, R.id.tvSetting)
+            makeSelectedActive(R.id.hAct, R.id.pAct, R.id.sAct)
             changeMainScreenFragmentTo("Home")
         }
         findViewById<LinearLayout>(R.id.btnProfile).setOnClickListener {
-            makeSelectedActive(R.id.tvProfile, R.id.tvHome, R.id.tvSetting)
+            makeSelectedActive(R.id.pAct, R.id.hAct, R.id.sAct)
             changeMainScreenFragmentTo("Profile")
 
         }
         findViewById<LinearLayout>(R.id.btnSetting).setOnClickListener {
-            makeSelectedActive(R.id.tvSetting, R.id.tvProfile, R.id.tvHome)
+            makeSelectedActive(R.id.sAct, R.id.hAct, R.id.pAct)
             changeMainScreenFragmentTo("Settings")
 
         }
@@ -57,6 +61,7 @@ class DashboardActivity : AppCompatActivity() {
         toolBar = findViewById(R.id.toolbar)
         setUpDrawer()
         mAuth = FirebaseAuth.getInstance()
+        changeMainScreenFragmentTo("Home")
     }
 
     private fun changeMainScreenFragmentTo(to : String) {
@@ -64,8 +69,8 @@ class DashboardActivity : AppCompatActivity() {
 //        set new fragment
         when(to.toLowerCase()) {
             "home" -> toFrag(HomeFragment())
-            "setting" -> toFrag(HomeFragment())
-            "profile" -> toFrag(HomeFragment())
+            "profile" -> toFrag(ProfileFragment())
+            "settings" -> toFrag(SettingsFragment())
         }
     }
 
@@ -78,9 +83,10 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun makeSelectedActive(active: Int, nA1: Int, nA2: Int) {
-        findViewById<TextView>(active).setTypeface(null, Typeface.BOLD)
-        findViewById<TextView>(nA1).setTypeface(null, Typeface.NORMAL)
-        findViewById<TextView>(nA2).setTypeface(null, Typeface.NORMAL)
+        findViewById<ImageView>(active).visibility = View.VISIBLE
+        findViewById<ImageView>(nA1).visibility = View.GONE
+        findViewById<ImageView>(nA2).visibility = View.GONE
+
     }
 
 

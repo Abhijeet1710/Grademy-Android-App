@@ -36,10 +36,10 @@ class SignupActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
         binding.btnSignIn.setOnClickListener {
-            binding.btnSignIn.visibility = View.GONE
+            binding.clSignInPage.visibility = View.GONE
             binding.pbLoading.visibility = View.VISIBLE
             signIn()
-            binding.btnSignIn.visibility = View.GONE
+            binding.clSignInPage.visibility = View.GONE
             binding.pbLoading.visibility = View.VISIBLE
         }
 
