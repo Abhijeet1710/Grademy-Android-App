@@ -1,4 +1,4 @@
-package com.edtechgrademy.com.grademy.view
+package com.edtechgrademy.com.grademy.view.activity
 
 import android.content.Intent
 import android.os.Bundle

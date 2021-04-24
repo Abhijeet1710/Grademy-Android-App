@@ -13,16 +13,16 @@
 
         <activity
             android:theme="@style/Theme.GrademySplash"
-            android:name=".view.SplashActivity">
+            android:name=".view.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:theme="@style/Theme.Grademy" android:name=".view.SignupActivity" />
+        <activity android:theme="@style/Theme.Grademy" android:name=".view.activity.SignupActivity" />
 
-        <activity android:theme="@style/Theme.GrademyDashboard" android:name=".view.DashboardActivity" />
+        <activity android:theme="@style/Theme.GrademyDashboard" android:name=".view.activity.DashboardActivity" />
 
     </application>
 

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.SplashActivity"
+    tools:context=".view.activity.SplashActivity"
     android:background="@drawable/ic_splash_background">
 
     <View
@@ -18,8 +18,8 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="150dp"
-        android:layout_height="35dp"
+        android:layout_width="120dp"
+        android:layout_height="29dp"
         android:layout_marginBottom="50dp"
         android:background="@drawable/ic_grademy_text"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,4 +1,4 @@
-package com.edtechgrademy.com.grademy.view
+package com.edtechgrademy.com.grademy.view.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

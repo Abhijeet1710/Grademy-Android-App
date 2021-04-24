@@ -1,4 +1,4 @@
-package com.edtechgrademy.com.grademy.view
+package com.edtechgrademy.com.grademy.view.activity
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -7,16 +7,17 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.edtechgrademy.com.grademy.R
+import com.edtechgrademy.com.grademy.controller.DashboardVMFactory
+import com.edtechgrademy.com.grademy.controller.DashboardViewModel
 import com.edtechgrademy.com.grademy.databinding.ActivityDashboardBinding
 import com.edtechgrademy.com.grademy.view.fragment.HomeFragment
 import com.edtechgrademy.com.grademy.view.fragment.ProfileFragment
 import com.edtechgrademy.com.grademy.view.fragment.SettingsFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.firebase.auth.FirebaseAuth
 import com.yarolegovich.slidingrootnav.SlideGravity
 import com.yarolegovich.slidingrootnav.SlidingRootNav
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder
@@ -24,34 +25,47 @@ import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder
 class DashboardActivity : AppCompatActivity() {
 
     lateinit var binding : ActivityDashboardBinding
-    private lateinit var mAuth : FirebaseAuth
     private lateinit var toolBar : Toolbar
     lateinit var slidingRootNav : SlidingRootNav
     lateinit var dlgBuilder : MaterialAlertDialogBuilder
+    private lateinit var vm : DashboardViewModel
+
+    private val HOME = "Home"
+    private val PROFILE = "Profile"
+    private val SETTINGS = "Settings"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        init()
+        val factory = DashboardVMFactory()
+
+        vm = ViewModelProvider(this, factory).get(DashboardViewModel::class.java)
+        toolBar = findViewById(R.id.toolbar)
+        dlgBuilder = MaterialAlertDialogBuilder(this)
+        setUpDrawer()
+        createDlg()
+        changeFragment()
 
         findViewById<LinearLayout>(R.id.btnHome).setOnClickListener {
             makeSelectedActive(R.id.hAct, R.id.pAct, R.id.sAct)
-            changeMainScreenFragmentTo("Home")
+            vm.currentFrag = HOME
+            changeFragment()
         }
         findViewById<LinearLayout>(R.id.btnProfile).setOnClickListener {
             makeSelectedActive(R.id.pAct, R.id.hAct, R.id.sAct)
-            changeMainScreenFragmentTo("Profile")
+            vm.currentFrag = PROFILE
+            changeFragment()
 
         }
         findViewById<LinearLayout>(R.id.btnSetting).setOnClickListener {
             makeSelectedActive(R.id.sAct, R.id.hAct, R.id.pAct)
-            changeMainScreenFragmentTo("Settings")
+            vm.currentFrag = SETTINGS
+            changeFragment()
 
         }
-
         findViewById<LinearLayout>(R.id.btnLogOut).setOnClickListener {
-//            showDlg() to confirm logout
+            slidingRootNav.closeMenu()
             dlgBuilder.show()
         }
 
@@ -60,9 +74,8 @@ class DashboardActivity : AppCompatActivity() {
     private fun createDlg() {
         dlgBuilder.setTitle("Log Out!")
         dlgBuilder.setMessage("Are you sure, Want to Log out ?")
-//        dlgBuilder.background = resources.getDrawable(R.drawable.dlg_back, null)
         dlgBuilder.setPositiveButton("Log out", ) { _: DialogInterface, _: Int ->
-            mAuth.signOut()
+           vm.logOut()
             startActivity(Intent(this, SignupActivity::class.java))
             finish()
         }
@@ -70,22 +83,14 @@ class DashboardActivity : AppCompatActivity() {
         }
     }
 
-    private fun init() {
-        toolBar = findViewById(R.id.toolbar)
-        setUpDrawer()
-        mAuth = FirebaseAuth.getInstance()
-        dlgBuilder = MaterialAlertDialogBuilder(this)
-        createDlg()
-        changeMainScreenFragmentTo("Home")
-    }
 
-    private fun changeMainScreenFragmentTo(to : String) {
-        toolBar.title = to
+    private fun changeFragment() {
+        toolBar.title = vm.currentFrag
 //        set new fragment
-        when(to.toLowerCase()) {
-            "home" -> toFrag(HomeFragment())
-            "profile" -> toFrag(ProfileFragment())
-            "settings" -> toFrag(SettingsFragment())
+        when(vm.currentFrag) {
+            HOME -> toFrag(HomeFragment())
+            PROFILE -> toFrag(ProfileFragment())
+            SETTINGS -> toFrag(SettingsFragment())
         }
     }
 
@@ -104,7 +109,6 @@ class DashboardActivity : AppCompatActivity() {
 
     }
 
-
     private fun setUpDrawer() {
         toolBar.title = "Home"
         setSupportActionBar(toolBar)
@@ -114,7 +118,6 @@ class DashboardActivity : AppCompatActivity() {
             .withMenuLayout(R.layout.drawer_menu)
             .withGravity(SlideGravity.LEFT)
             .inject()
-
     }
 
 
