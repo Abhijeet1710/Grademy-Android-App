@@ -11,6 +11,38 @@ implementation 'com.google.firebase:firebase-analytics-ktx'
 
 apply plugin: 'com.google.gms.google-services'
 
+//Flat Dialog
+
+allprojects {
+	repositories {
+		...
+		maven { url "https://jitpack.io" }
+	}
+}
+
+implementation 'com.github.gabriel-TheCode:AestheticDialogs:1.3.6'
+
+implementation 'com.afollestad.material-dialogs:core:3.3.0'
+
+
+
+     AestheticDialog.Builder(this, DialogStyle.FLAT, DialogType.SUCCESS)
+                        .setTitle("Title")
+                        .setMessage("Message")
+                        .setCancelable(false)
+                        .setDarkMode(true)
+                        .setGravity(Gravity.CENTER)
+                        .setAnimation(DialogAnimation.SHRINK)
+                        .setOnClickListener(object : OnDialogClickListener {
+                            override fun onClick(dialog: AestheticDialog.Builder) {
+                                dialog.dismiss()
+                                //actions...
+                            }
+                        })
+                        .show()
+
+
+
 SHA1: FE:62:DC:56:00:95:78:20:8A:80:E7:FF:CD:3B:85:B7:B3:C7:02:1A
 SHA-256: 22:8F:A6:76:AA:A9:1E:6D:33:08:33:6F:54:AB:C0:F4:6A:1E:AA:3F:73:24:4E:48:A3:3D:63:90:8B:29:15:0C
 Valid until: Sunday, 19 February, 2051

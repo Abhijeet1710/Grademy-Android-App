@@ -1,13 +1,13 @@
 package com.edtechgrademy.com.grademy.view
 
+import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.edtechgrademy.com.grademy.R
@@ -15,6 +15,7 @@ import com.edtechgrademy.com.grademy.databinding.ActivityDashboardBinding
 import com.edtechgrademy.com.grademy.view.fragment.HomeFragment
 import com.edtechgrademy.com.grademy.view.fragment.ProfileFragment
 import com.edtechgrademy.com.grademy.view.fragment.SettingsFragment
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.yarolegovich.slidingrootnav.SlideGravity
 import com.yarolegovich.slidingrootnav.SlidingRootNav
@@ -26,6 +27,7 @@ class DashboardActivity : AppCompatActivity() {
     private lateinit var mAuth : FirebaseAuth
     private lateinit var toolBar : Toolbar
     lateinit var slidingRootNav : SlidingRootNav
+    lateinit var dlgBuilder : MaterialAlertDialogBuilder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,18 +51,31 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         findViewById<LinearLayout>(R.id.btnLogOut).setOnClickListener {
-            mAuth.signOut()
 //            showDlg() to confirm logout
+            dlgBuilder.show()
+        }
+
+    }
+
+    private fun createDlg() {
+        dlgBuilder.setTitle("Log Out!")
+        dlgBuilder.setMessage("Are you sure, Want to Log out ?")
+//        dlgBuilder.background = resources.getDrawable(R.drawable.dlg_back, null)
+        dlgBuilder.setPositiveButton("Log out", ) { _: DialogInterface, _: Int ->
+            mAuth.signOut()
             startActivity(Intent(this, SignupActivity::class.java))
             finish()
         }
-
+        dlgBuilder.setNegativeButton("Cancel") { _: DialogInterface, _: Int ->
+        }
     }
 
     private fun init() {
         toolBar = findViewById(R.id.toolbar)
         setUpDrawer()
         mAuth = FirebaseAuth.getInstance()
+        dlgBuilder = MaterialAlertDialogBuilder(this)
+        createDlg()
         changeMainScreenFragmentTo("Home")
     }
 
