@@ -4,10 +4,15 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.edtechgrademy.com.grademy.R
@@ -18,16 +23,21 @@ import com.edtechgrademy.com.grademy.view.fragment.HomeFragment
 import com.edtechgrademy.com.grademy.view.fragment.ProfileFragment
 import com.edtechgrademy.com.grademy.view.fragment.SettingsFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.navigation.NavigationView
 import com.yarolegovich.slidingrootnav.SlideGravity
 import com.yarolegovich.slidingrootnav.SlidingRootNav
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder
 
-class DashboardActivity : AppCompatActivity() {
+class DashboardActivity : AppCompatActivity(){
 
-    lateinit var binding : ActivityDashboardBinding
+    private lateinit var binding : ActivityDashboardBinding
+
     private lateinit var toolBar : Toolbar
-    lateinit var slidingRootNav : SlidingRootNav
-    lateinit var dlgBuilder : MaterialAlertDialogBuilder
+    private lateinit var navigationView : NavigationView
+    private lateinit var toggle : ActionBarDrawerToggle
+    private lateinit var drawer : DrawerLayout
+
+    private lateinit var dlgBuilder : MaterialAlertDialogBuilder
     private lateinit var vm : DashboardViewModel
 
     private val HOME = "Home"
@@ -39,50 +49,61 @@ class DashboardActivity : AppCompatActivity() {
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val factory = DashboardVMFactory()
-
         vm = ViewModelProvider(this, factory).get(DashboardViewModel::class.java)
+
         toolBar = findViewById(R.id.toolbar)
-        dlgBuilder = MaterialAlertDialogBuilder(this)
-        setUpDrawer()
+        navigationView = findViewById(R.id.navigation)
+        drawer = findViewById(R.id.drawer)
+
         createDlg()
         changeFragment()
 
-        findViewById<LinearLayout>(R.id.btnHome).setOnClickListener {
-            makeSelectedActive(R.id.hAct, R.id.pAct, R.id.sAct)
-            vm.currentFrag = HOME
-            changeFragment()
+        toolBar.setNavigationOnClickListener {
+            drawer.openDrawer(GravityCompat.START)
         }
-        findViewById<LinearLayout>(R.id.btnProfile).setOnClickListener {
-            makeSelectedActive(R.id.pAct, R.id.hAct, R.id.sAct)
-            vm.currentFrag = PROFILE
-            changeFragment()
 
-        }
-        findViewById<LinearLayout>(R.id.btnSetting).setOnClickListener {
-            makeSelectedActive(R.id.sAct, R.id.hAct, R.id.pAct)
-            vm.currentFrag = SETTINGS
-            changeFragment()
+        navigationView.setNavigationItemSelectedListener {
+            when(it.itemId) {
+                R.id.itemHome -> {
+                    vm.currentFrag = HOME
+                    changeFragment()
+                }
+                R.id.itemProfile -> {
+                    vm.currentFrag = PROFILE
+                    changeFragment()
+                }
+                R.id.itemSetting -> {
+                    vm.currentFrag = SETTINGS
+                    changeFragment()
+                }
+                R.id.itemLogout -> {
+                    dlgBuilder.show()
+                }
+                else -> {
+                    Toast.makeText(this, "else", Toast.LENGTH_SHORT).show()
+                }
+            }
 
-        }
-        findViewById<LinearLayout>(R.id.btnLogOut).setOnClickListener {
-            slidingRootNav.closeMenu()
-            dlgBuilder.show()
+            true
         }
 
     }
 
     private fun createDlg() {
+        dlgBuilder = MaterialAlertDialogBuilder(this)
         dlgBuilder.setTitle("Log Out!")
         dlgBuilder.setMessage("Are you sure, Want to Log out ?")
+        dlgBuilder.setCancelable(false
+
+        )
         dlgBuilder.setPositiveButton("Log out", ) { _: DialogInterface, _: Int ->
-           vm.logOut()
+            vm.logOut()
             startActivity(Intent(this, SignupActivity::class.java))
             finish()
         }
         dlgBuilder.setNegativeButton("Cancel") { _: DialogInterface, _: Int ->
         }
     }
-
 
     private fun changeFragment() {
         toolBar.title = vm.currentFrag
@@ -98,26 +119,7 @@ class DashboardActivity : AppCompatActivity() {
         val ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.flContainer, frag)
         ft.commit()
-        slidingRootNav.closeMenu()
-
-    }
-
-    private fun makeSelectedActive(active: Int, nA1: Int, nA2: Int) {
-        findViewById<ImageView>(active).visibility = View.VISIBLE
-        findViewById<ImageView>(nA1).visibility = View.GONE
-        findViewById<ImageView>(nA2).visibility = View.GONE
-
-    }
-
-    private fun setUpDrawer() {
-        toolBar.title = "Home"
-        setSupportActionBar(toolBar)
-        slidingRootNav = SlidingRootNavBuilder(this)
-            .withToolbarMenuToggle(toolBar)
-            .withMenuOpened(false)
-            .withMenuLayout(R.layout.drawer_menu)
-            .withGravity(SlideGravity.LEFT)
-            .inject()
+        drawer.closeDrawer(GravityCompat.START)
     }
 
 

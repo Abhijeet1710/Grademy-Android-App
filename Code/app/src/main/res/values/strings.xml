@@ -4,4 +4,8 @@
     <string name="signin2">Create a new account by signing into Google.</string>
     <string name="signin">Sign in with Google</string>
     <string name="signin3">Sign in</string>
+
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="app_slogan">The new way to learn</string>
 </resources>

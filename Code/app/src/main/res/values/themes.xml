@@ -16,8 +16,9 @@
         <item name="colorSecondary">@color/light_blue</item>
         <item name="colorOnSecondary">@color/black</item>
         <item name="android:statusBarColor" tools:targetApi="l">@color/light_blue</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="l">false</item>
-        <item name="drawerArrowStyle">@style/DrawerIcon</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="l">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+<!--        <item name="drawerArrowStyle">@style/DrawerIcon</item>-->
     </style>
 
     <style name="Theme.GrademySplash" parent="Theme.MaterialComponents.DayNight.NoActionBar">
