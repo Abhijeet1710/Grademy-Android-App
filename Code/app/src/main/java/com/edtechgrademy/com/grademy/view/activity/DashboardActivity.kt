@@ -2,14 +2,13 @@ package com.edtechgrademy.com.grademy.view.activity
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
-import android.view.View
-import android.widget.ImageView
-import android.widget.LinearLayout
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -24,9 +23,7 @@ import com.edtechgrademy.com.grademy.view.fragment.ProfileFragment
 import com.edtechgrademy.com.grademy.view.fragment.SettingsFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
-import com.yarolegovich.slidingrootnav.SlideGravity
-import com.yarolegovich.slidingrootnav.SlidingRootNav
-import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder
+
 
 class DashboardActivity : AppCompatActivity(){
 
@@ -48,8 +45,11 @@ class DashboardActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         val factory = DashboardVMFactory()
         vm = ViewModelProvider(this, factory).get(DashboardViewModel::class.java)
+
+        vm.changeTheme(this, vm.getTheme(this))
 
         toolBar = findViewById(R.id.toolbar)
         navigationView = findViewById(R.id.navigation)
@@ -86,17 +86,14 @@ class DashboardActivity : AppCompatActivity(){
 
             true
         }
-
     }
 
     private fun createDlg() {
-        dlgBuilder = MaterialAlertDialogBuilder(this)
+        dlgBuilder = MaterialAlertDialogBuilder(this, R.style.AlertDialogTheme)
         dlgBuilder.setTitle("Log Out!")
         dlgBuilder.setMessage("Are you sure, Want to Log out ?")
-        dlgBuilder.setCancelable(false
-
-        )
-        dlgBuilder.setPositiveButton("Log out", ) { _: DialogInterface, _: Int ->
+        dlgBuilder.setCancelable(false)
+        dlgBuilder.setPositiveButton("Log out") { _: DialogInterface, _: Int ->
             vm.logOut()
             startActivity(Intent(this, SignupActivity::class.java))
             finish()

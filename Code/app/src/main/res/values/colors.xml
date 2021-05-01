@@ -7,9 +7,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="white2">#DCDCDC</color>
-    <color name="black2">#FFFFFFFF</color>
+    <color name="black_back">#131213</color>
+    <color name="white_back">#EDEDED</color>
 
+    <color name="white2">#D3D3D3</color>
+    <color name="black2">#4C4C4C</color>
 
 
 </resources>

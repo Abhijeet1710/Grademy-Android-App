@@ -5,17 +5,65 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="30dp"
     tools:context=".view.fragment.SettingsFragment">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Settings"
-        android:textSize="40sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.309"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Theme"
+            android:layout_marginBottom="10dp"/>
+
+        <RadioGroup
+            android:id="@+id/rgTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rbSystemDefault"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="?attr/colorOnPrimary"
+                android:checked="true"
+                android:text="System Default"/>
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rbDark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="?attr/colorOnPrimary"
+                android:text="Dark"/>
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rbLight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTint="?attr/colorOnPrimary"
+                android:text="Light"/>
+        </RadioGroup>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:alpha="0.3"
+            android:layout_marginVertical="15dp"
+            android:background="?attr/colorBackgroundFloating"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnLogOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_logout_fill"
+            android:textAllCaps="false"
+            android:textColor="?attr/colorOnPrimary"
+            android:textStyle="bold"
+            android:paddingHorizontal="10dp"
+            android:background="#0000"
+            android:drawablePadding="10dp"
+            android:text="Log Out"/>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

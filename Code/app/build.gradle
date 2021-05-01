@@ -56,9 +56,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
 
-    //Navigation Drawer
-    implementation 'com.yarolegovich:sliding-root-nav:1.1.1'
-
-    //Dialogue
-
+    //Image Loading
+    implementation 'com.squareup.picasso:picasso:2.8'
 }
