@@ -46,3 +46,15 @@ implementation 'com.afollestad.material-dialogs:core:3.3.0'
 SHA1: FE:62:DC:56:00:95:78:20:8A:80:E7:FF:CD:3B:85:B7:B3:C7:02:1A
 SHA-256: 22:8F:A6:76:AA:A9:1E:6D:33:08:33:6F:54:AB:C0:F4:6A:1E:AA:3F:73:24:4E:48:A3:3D:63:90:8B:29:15:0C
 Valid until: Sunday, 19 February, 2051
+
+
+def lottieVersion = "3.7.0" 
+implementation "com.airbnb.android:lottie:$lottieVersion"
+
+<com.airbnb.lottie.LottieAnimationView
+     android:id="@+id/animationView"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     app:lottie_url="REPLACE_JSON_URL"
+     app:lottie_autoPlay="true"
+     app:lottie_loop="true"/>

@@ -8,6 +8,8 @@
         <item name="colorPrimary">@color/black_back</item>
         <item name="colorOnPrimary">@color/white</item>
 
+        <item name="colorOnSecondary">@color/black3</item>
+
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
         <item name="android:windowLightStatusBar" tools:targetApi="l">false</item>
     </style>
@@ -19,6 +21,8 @@
         <item name="colorSecondary">@color/black_back</item>
         <item name="colorOnSecondary">@color/black</item>
         <item name="colorPrimaryDark">?attr/colorPrimary</item>
+
+        <item name="colorOnPrimarySurface">@color/black_back_main</item>
 
         <item name="colorBackgroundFloating">@color/black2</item>
         <item name="android:windowTranslucentStatus">true</item>

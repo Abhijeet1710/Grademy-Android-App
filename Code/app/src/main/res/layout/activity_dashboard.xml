@@ -7,8 +7,7 @@
     tools:context=".view.activity.DashboardActivity"
     android:orientation="vertical"
     android:elevation="20dp"
-    android:id="@+id/drawer"
-    tools:openDrawer="start">
+    android:id="@+id/drawer">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,15 +39,9 @@
             android:id="@+id/flContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="?attr/colorSecondary"
+            android:background="?attr/colorOnPrimarySurface"
             android:layout_weight="1">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="1.7dp"
-                android:alpha="0.5"
-                android:elevation="10dp"
-                android:background="?attr/colorBackgroundFloating"/>
 
         </FrameLayout>
 

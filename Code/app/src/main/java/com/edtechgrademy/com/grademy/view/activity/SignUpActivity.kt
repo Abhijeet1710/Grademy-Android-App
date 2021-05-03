@@ -1,6 +1,8 @@
 package com.edtechgrademy.com.grademy.view.activity
 
 import android.content.Intent
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -26,6 +28,8 @@ class SignupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        if(resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
+            binding.lottyStudy.visibility = View.GONE
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken("1053654775130-bleme6ap9gvnial3gg77khe3bb9g2qva.apps.googleusercontent.com")
@@ -64,7 +68,7 @@ class SignupActivity : AppCompatActivity() {
                     Toast.makeText(this, "Auth Failed \n ${e.message}", Toast.LENGTH_SHORT).show()
                 }
             }else{
-                Toast.makeText(this, "Internal Error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Internal Error $exception", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -74,7 +78,6 @@ class SignupActivity : AppCompatActivity() {
         mAuth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        val user = mAuth.currentUser
                         val intent = Intent(applicationContext, DashboardActivity::class.java)
                         startActivity(intent)
                         finish()

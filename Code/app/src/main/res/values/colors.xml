@@ -13,5 +13,12 @@
     <color name="white2">#D3D3D3</color>
     <color name="black2">#4C4C4C</color>
 
+    <color name="white3">#D3D3D3</color>
+    <color name="black3">#4C4C4C</color>
+
+    <color name="black_back_main">#17181c</color>
+    <color name="white_back_main">#eff1f4</color>
+
+
 
 </resources>

@@ -20,8 +20,8 @@ class ProfileFragment : Fragment() {
     private lateinit var user : CurrentUser
 
     private lateinit var userName : TextView
+    private lateinit var userFullName : TextView
     private lateinit var userEmail : TextView
-    private lateinit var userPhone : TextView
     private lateinit var userProfilePic : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,17 +41,17 @@ class ProfileFragment : Fragment() {
     }
 
     private fun init(view: View) {
-        userName = view.findViewById(R.id.tvUserName)
+        userName = view.findViewById(R.id.tvName)
+        userFullName = view.findViewById(R.id.tvUserFullName)
         userEmail = view.findViewById(R.id.tvUserEmail)
-        userPhone = view.findViewById(R.id.tvPhoneNo)
         userProfilePic = view.findViewById(R.id.ivProfile)
     }
 
     private fun loadUserOnUi() {
         user = vm.getUser()
-        userName.text = user.name
+        userName.text = user.name.toUpperCase()
+        userFullName.text = user.fullName
         userEmail.text = user.email
-        userPhone.text = if(user.phoneNo != "" || user.phoneNo != null) user.phoneNo else "+91 7558348607"
         Picasso.get().load(user.photoUrl).into(userProfilePic)
 
     }
