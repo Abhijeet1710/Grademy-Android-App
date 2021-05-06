@@ -1,11 +1,15 @@
 package com.edtechgrademy.com.grademy.controller
 
 import android.content.Context
-import android.content.SharedPreferences
+import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModel
 import com.edtechgrademy.com.grademy.model.CurrentUser
+import com.edtechgrademy.com.grademy.model.PdfModel
+import com.edtechgrademy.com.grademy.utils.Util
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+
 
 class DashboardViewModel(val st: String) : ViewModel() {
 
@@ -13,7 +17,7 @@ class DashboardViewModel(val st: String) : ViewModel() {
     var SPNAME: String = "THEME"
     var THEME_MODE: String = "THEME_MODE"
     var MODE: String = "SYSTEM_DEFAULT"
-
+    private val db = FirebaseFirestore.getInstance()
     private val mAuth = FirebaseAuth.getInstance()
 
     fun logOut() = mAuth.signOut()
@@ -53,12 +57,37 @@ class DashboardViewModel(val st: String) : ViewModel() {
     }
 
     fun getUser(): CurrentUser = CurrentUser(
-            mAuth.currentUser.displayName.split(" ")[0],
-            mAuth.currentUser.displayName,
-            mAuth.currentUser.email,
-            mAuth.currentUser.photoUrl
+        mAuth.currentUser.displayName.split(" ")[0],
+        mAuth.currentUser.displayName,
+        mAuth.currentUser.email,
+        mAuth.currentUser.photoUrl
 //            mAuth.currentUser.phoneNumber,
-        )
+    )
+
+    fun getPdfs(myCallback : (ArrayList<PdfModel>) -> Unit) {
+
+        db.collection(Util.english)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val list = ArrayList<PdfModel>()
+                    for (document in task.result!!) {
+                        val pdfModel = PdfModel()
+                        pdfModel.pdfName = document.data["pdf_name"] as String
+                        pdfModel.pdfThumbnail = document.data["pdf_thumbnail"] as String
+                        pdfModel.pdfUrl = document.data["pdf_url"] as String
+                        list.add(pdfModel)
+                        Log.d("TAG_MYTAG", "${pdfModel.pdfName}  ")
+                    }
+                    myCallback(list)
+                } else {
+//                    Log.w(TAG, "Error getting documents.", task.exception)
+                }
+            }
+    }
+
+
+
     }
 
 

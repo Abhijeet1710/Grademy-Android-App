@@ -54,6 +54,7 @@ dependencies {
     //Firebase
     implementation platform('com.google.firebase:firebase-bom:27.0.0')
     implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-firestore:22.1.2'
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
 
     //Image Loading
@@ -61,4 +62,6 @@ dependencies {
 
     //Lotty Animation
     implementation "com.airbnb.android:lottie:3.7.0"
+
+    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
 }

@@ -10,20 +10,26 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
-
         <activity
-            android:theme="@style/Theme.GrademySplash"
-            android:name=".view.activity.SplashActivity">
+            android:theme="@style/Theme.GrademyDashboard"
+            android:name=".view.activity.ViewPdfActivity"/>
+
+        <activity android:name=".view.activity.MoreActivity" />
+        <activity
+            android:name=".view.activity.SplashActivity"
+            android:theme="@style/Theme.GrademySplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:theme="@style/Theme.Grademy" android:name=".view.activity.SignupActivity" />
-
-        <activity android:theme="@style/Theme.GrademyDashboard" android:name=".view.activity.DashboardActivity" />
-
+        <activity
+            android:name=".view.activity.SignupActivity"
+            android:theme="@style/Theme.Grademy" />
+        <activity
+            android:name=".view.activity.DashboardActivity"
+            android:theme="@style/Theme.GrademyDashboard" />
     </application>
 
 </manifest>
