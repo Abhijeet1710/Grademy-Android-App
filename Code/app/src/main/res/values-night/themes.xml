@@ -50,5 +50,7 @@
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
-
+    <style name="ShapeAppearanceOverlay.Grademy.CornerCut" parent="">
+        <item name="cornerSize">3%</item>
+    </style>
 </resources>

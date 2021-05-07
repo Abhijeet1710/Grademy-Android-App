@@ -8,25 +8,42 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edtechgrademy.com.grademy.R
-import com.edtechgrademy.com.grademy.controller.DashboardVMFactory
-import com.edtechgrademy.com.grademy.controller.DashboardViewModel
+import com.edtechgrademy.com.grademy.controller.HomeVMFactory
+import com.edtechgrademy.com.grademy.controller.HomeViewModel
 import com.edtechgrademy.com.grademy.model.PdfModel
 import com.edtechgrademy.com.grademy.view.activity.MoreActivity
 import com.edtechgrademy.com.grademy.view.helpers.SubjectRecyclerViewAdapter
-import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.circularreveal.cardview.CircularRevealCardView
 
 
 class HomeFragment : Fragment() {
 
-    private lateinit var vm : DashboardViewModel
+    private lateinit var vm : HomeViewModel
 
     lateinit var ctx : Context
-    lateinit var rvSubject : RecyclerView
-    lateinit var ivMore : ImageView
+
+    lateinit var svMain : NestedScrollView
+    lateinit var pbLoader : CircularRevealCardView
+
+    lateinit var rvEnglish : RecyclerView
+    lateinit var rvScience1 : RecyclerView
+    lateinit var rvScience2 : RecyclerView
+    lateinit var rvAlgebra : RecyclerView
+    lateinit var rvGeometry : RecyclerView
+
+    lateinit var ivMoreEnglish : ImageView
+
+    val listEnglish = ArrayList<PdfModel>()
+    val listScience1 = ArrayList<PdfModel>()
+    val listScience2 = ArrayList<PdfModel>()
+    val listAlgebra = ArrayList<PdfModel>()
+    val listGeometry = ArrayList<PdfModel>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,30 +55,57 @@ class HomeFragment : Fragment() {
         val view =  inflater.inflate(R.layout.fragment_home, container, false)
         ctx = container!!.context
 
-        val factory = DashboardVMFactory()
-        vm = ViewModelProvider(this, factory).get(DashboardViewModel::class.java)
-
         init(view)
-        vm.getPdfs {
-            initRecyclerView(it)
+        vm.getEnglishPdfs {
+
+            for (i in 0..4) {
+                listEnglish.add(it[i])
+            }
+
+            svMain.visibility = View.VISIBLE
+            pbLoader.visibility = View.GONE
+
+//            initRecyclerView(rvEnglish, it)
+//            initRecyclerView(rvScience1, it)
+//            initRecyclerView(rvScience2, it)
+//            initRecyclerView(rvAlgebra, it)
+//            initRecyclerView(rvGeometry, it)
         }
 
-        ivMore.setOnClickListener {
-//            startActivity(Intent(ctx, MoreActivity::class.java))
+        initRecyclerView(rvEnglish,  listEnglish)
+        initRecyclerView(rvScience1, listEnglish)
+        initRecyclerView(rvScience2, listEnglish)
+        initRecyclerView(rvAlgebra,  listEnglish)
+        initRecyclerView(rvGeometry, listEnglish)
+        
+        ivMoreEnglish.setOnClickListener {
+            startActivity(Intent(ctx, MoreActivity::class.java))
         }
+
 
         return view
     }
 
     private fun init(view: View) {
-        rvSubject = view.findViewById(R.id.rvSubject)
-        ivMore = view.findViewById(R.id.ivMore)
+        val factory = HomeVMFactory()
+        vm = ViewModelProvider(this, factory).get(HomeViewModel::class.java)
+
+        svMain = view.findViewById(R.id.svMain)
+        pbLoader = view.findViewById(R.id.pbLoader)
+
+        rvEnglish = view.findViewById(R.id.rvEnglish)
+        rvScience1 = view.findViewById(R.id.rvScience1)
+        rvScience2 = view.findViewById(R.id.rvScience2)
+        rvAlgebra = view.findViewById(R.id.rvAlgebra)
+        rvGeometry = view.findViewById(R.id.rvGeometry)
+
+        ivMoreEnglish = view.findViewById(R.id.ivMoreEnglish)
     }
 
-    private fun initRecyclerView(allPdfs : ArrayList<PdfModel>) {
+    private fun initRecyclerView(recyclerView: RecyclerView, allPdfs : ArrayList<PdfModel>) {
         val layoutMgr = LinearLayoutManager(ctx, LinearLayoutManager.HORIZONTAL, false)
-        rvSubject.layoutManager = layoutMgr
-        rvSubject.adapter = SubjectRecyclerViewAdapter(ctx, allPdfs)
+        recyclerView.layoutManager = layoutMgr
+        recyclerView.adapter = SubjectRecyclerViewAdapter(ctx, allPdfs)
     }
 
 

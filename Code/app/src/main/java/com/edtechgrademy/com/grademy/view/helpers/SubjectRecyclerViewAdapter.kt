@@ -14,6 +14,7 @@ import com.edtechgrademy.com.grademy.R
 import com.edtechgrademy.com.grademy.model.PdfModel
 import com.edtechgrademy.com.grademy.view.activity.ViewPdfActivity
 import com.squareup.picasso.Picasso
+import com.squareup.picasso.Transformation
 
 class SubjectRecyclerViewAdapter(val context : Context, private val list : ArrayList<PdfModel>) :
     RecyclerView.Adapter<SubjectRecyclerViewAdapter.SubjectRecyclerViewViewHolder>() {
@@ -30,24 +31,32 @@ class SubjectRecyclerViewAdapter(val context : Context, private val list : Array
     override fun onBindViewHolder(holder: SubjectRecyclerViewViewHolder, position: Int) {
 
         val pdf = list[position]
-        Picasso
-            .get()
+        Picasso.get()
             .load(pdf.pdfThumbnail)
             .fit()
+            .placeholder(R.drawable.place)
             .into(holder.thumbnail)
 
         holder.thumbnail.setOnClickListener {
             Toast.makeText(context, "${pdf.pdfName}", Toast.LENGTH_LONG).show()
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.setDataAndType(Uri.parse(pdf.pdfUrl),
-                "application/pdf")
-//            intent.putExtra("pdfUrl", pdf.pdfUrl)
-//            context.startActivity(intent)
-
-            context.startActivity(intent)
+            val url = pdf.pdfUrl.toString()
+//            openInAnotherApp(url)
+            openInSameApp(url)
 
         }
     }
 
     override fun getItemCount(): Int = list.size
+
+    private fun openInSameApp(url: String) {
+        val intent = Intent(context, ViewPdfActivity::class.java)
+        intent.putExtra("pdf_url", url)
+        context.startActivity(intent)
+    }
+    private fun openInDifferentApp(url : String) {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.setDataAndType(Uri.parse("$url"),
+            "application/pdf")
+        context.startActivity(intent)
+    }
 }

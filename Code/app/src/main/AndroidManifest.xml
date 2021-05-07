@@ -14,7 +14,10 @@
             android:theme="@style/Theme.GrademyDashboard"
             android:name=".view.activity.ViewPdfActivity"/>
 
-        <activity android:name=".view.activity.MoreActivity" />
+        <activity
+            android:theme="@style/Theme.GrademyDashboard"
+            android:name=".view.activity.MoreActivity" />
+
         <activity
             android:name=".view.activity.SplashActivity"
             android:theme="@style/Theme.GrademySplash">

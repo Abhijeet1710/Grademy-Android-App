@@ -73,3 +73,9 @@ webView.loadData(doc, "text/html", "UTF-8");
 
 
 https://firebasestorage.googleapis.com/v0/b/grademy-e155a.appspot.com/o/MH-Board%2FSSC%2FEnglish%2FPdfs%2FAdjective.pdf?alt=media&token=63380844-ed71-4723-ad2b-ec36a69f0a58
+
+
+  implementation 'com.github.bumptech.glide:glide:4.12.0'
+  annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
+implementation 'com.facebook.shimmer:shimmer:0.5.0'

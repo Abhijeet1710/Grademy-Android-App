@@ -8,4 +8,12 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="app_slogan">The new way to learn</string>
+
+
+<!--    Subjects List-->
+    <string name="sub_english">English</string>
+    <string name="sub_science_one">Science 1</string>
+    <string name="sub_science_two">Science 2</string>
+    <string name="sub_algebra">Algebra</string>
+    <string name="sub_geometry">Geometry</string>
 </resources>
