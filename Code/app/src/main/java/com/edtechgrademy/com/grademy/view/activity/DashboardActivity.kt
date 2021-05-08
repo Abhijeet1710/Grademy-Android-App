@@ -2,13 +2,10 @@ package com.edtechgrademy.com.grademy.view.activity
 
 import android.content.DialogInterface
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -23,6 +20,7 @@ import com.edtechgrademy.com.grademy.view.fragment.ProfileFragment
 import com.edtechgrademy.com.grademy.view.fragment.SettingsFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
+import kotlin.system.exitProcess
 
 
 class DashboardActivity : AppCompatActivity(){
@@ -34,7 +32,8 @@ class DashboardActivity : AppCompatActivity(){
     private lateinit var toggle : ActionBarDrawerToggle
     private lateinit var drawer : DrawerLayout
 
-    private lateinit var dlgBuilder : MaterialAlertDialogBuilder
+    private lateinit var dlgLogout : MaterialAlertDialogBuilder
+    private lateinit var dlgExit : MaterialAlertDialogBuilder
     private lateinit var vm : DashboardViewModel
 
     private val HOME = "Home"
@@ -45,18 +44,7 @@ class DashboardActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val factory = DashboardVMFactory()
-        vm = ViewModelProvider(this, factory).get(DashboardViewModel::class.java)
-
-        vm.changeTheme(this, vm.getTheme(this))
-
-        toolBar = findViewById(R.id.toolbar)
-        navigationView = findViewById(R.id.navigation)
-        drawer = findViewById(R.id.drawer)
-
-        createDlg()
-        changeFragment()
+        init()
 
         toolBar.setNavigationOnClickListener {
             drawer.openDrawer(GravityCompat.START)
@@ -77,7 +65,7 @@ class DashboardActivity : AppCompatActivity(){
                     changeFragment()
                 }
                 R.id.itemLogout -> {
-                    dlgBuilder.show()
+                    dlgLogout.show()
                 }
                 else -> {
                     Toast.makeText(this, "else", Toast.LENGTH_SHORT).show()
@@ -88,17 +76,33 @@ class DashboardActivity : AppCompatActivity(){
         }
     }
 
-    private fun createDlg() {
-        dlgBuilder = MaterialAlertDialogBuilder(this, R.style.AlertDialogTheme)
-        dlgBuilder.setTitle("Log Out!")
-        dlgBuilder.setMessage("Are you sure, Want to Log out ?")
-        dlgBuilder.setCancelable(false)
-        dlgBuilder.setPositiveButton("Log out") { _: DialogInterface, _: Int ->
+    private fun init() {
+        val factory = DashboardVMFactory()
+        vm = ViewModelProvider(this, factory).get(DashboardViewModel::class.java)
+
+        vm.changeTheme(this, vm.getTheme(this))
+
+        toolBar = findViewById(R.id.toolbar)
+        navigationView = findViewById(R.id.navigation)
+        drawer = findViewById(R.id.drawer)
+
+        createExitDialog()
+        createLogoutDialog()
+        changeFragment()
+
+    }
+
+    private fun createLogoutDialog() {
+        dlgLogout = MaterialAlertDialogBuilder(this, R.style.AlertDialogTheme)
+        dlgLogout.setTitle("Log Out!")
+        dlgLogout.setMessage("Are you sure, Want to Log out ?")
+        dlgLogout.setCancelable(false)
+        dlgLogout.setPositiveButton("Log out") { _: DialogInterface, _: Int ->
             vm.logOut()
             startActivity(Intent(this, SignupActivity::class.java))
             finish()
         }
-        dlgBuilder.setNegativeButton("Cancel") { _: DialogInterface, _: Int ->
+        dlgLogout.setNegativeButton("Cancel") { _: DialogInterface, _: Int ->
         }
     }
 
@@ -119,6 +123,21 @@ class DashboardActivity : AppCompatActivity(){
         drawer.closeDrawer(GravityCompat.START)
     }
 
+    override fun onBackPressed() {
+        dlgExit.show()
+    }
 
+    private fun createExitDialog() {
+        dlgExit = MaterialAlertDialogBuilder(this, R.style.AlertDialogTheme)
+        dlgExit.setTitle("Exit!")
+        dlgExit.setMessage("Are you sure, Want to Exit ?")
+        dlgExit.setCancelable(false)
+        dlgExit.setPositiveButton("Exit") { _: DialogInterface, _: Int ->
+            finishAffinity()
+            exitProcess(0)
+        }
+        dlgExit.setNegativeButton("Cancel") { _: DialogInterface, _: Int ->
+        }
+    }
 }
 

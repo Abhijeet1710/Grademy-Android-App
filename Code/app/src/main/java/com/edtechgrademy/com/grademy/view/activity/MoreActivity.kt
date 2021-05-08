@@ -3,30 +3,38 @@ package com.edtechgrademy.com.grademy.view.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
+import android.view.animation.AnimationUtils
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edtechgrademy.com.grademy.R
 import com.edtechgrademy.com.grademy.controller.HomeVMFactory
 import com.edtechgrademy.com.grademy.controller.HomeViewModel
-import com.edtechgrademy.com.grademy.databinding.ActivityMoreBinding
 import com.edtechgrademy.com.grademy.model.PdfModel
 import com.edtechgrademy.com.grademy.view.helpers.SubjectRecyclerViewAdapter
 import com.google.android.material.circularreveal.cardview.CircularRevealCardView
 
 class MoreActivity : AppCompatActivity() {
 
-    private lateinit var vm : HomeViewModel
+    private lateinit var vm: HomeViewModel
 
-    lateinit var rvMore : RecyclerView
-    lateinit var ivSearch : ImageView
-    lateinit var ivBack : ImageView
-    lateinit var tvTitle : TextView
-    lateinit var pbMoreLoader : CircularRevealCardView
+    private var list = ArrayList<PdfModel>()
+    lateinit var adapter: SubjectRecyclerViewAdapter
+
+    lateinit var rvMore: RecyclerView
+    lateinit var ivSearch: ConstraintLayout
+    lateinit var etSearch: EditText
+    lateinit var ivBack: ConstraintLayout
+    lateinit var tvTitle: TextView
+    lateinit var pbMoreLoader: CircularRevealCardView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,14 +44,75 @@ class MoreActivity : AppCompatActivity() {
         vm.getEnglishPdfs {
             pbMoreLoader.visibility = View.GONE
             rvMore.visibility = View.VISIBLE
-            setUpRecyclerView(it)
+            list = it
+            setUpRecyclerView(list)
+        }
+
+        ivSearch.setOnClickListener {
+            if (etSearch.visibility == View.GONE) showSearchBar()
         }
 
         ivBack.setOnClickListener {
-            startActivity(Intent(this, DashboardActivity::class.java))
-            finish()
+            if (etSearch.visibility == View.VISIBLE) {
+                hideSearchBar()
+                loadAllDataIntoList()
+            } else {
+                startActivity(Intent(this, DashboardActivity::class.java))
+                finish()
+            }
         }
 
+        etSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(
+                s: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+            }
+
+            override fun onTextChanged(
+                s: CharSequence?,
+                start: Int,
+                before: Int,
+                count: Int
+            ) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                filter(s.toString())
+            }
+
+        })
+
+    }
+
+    private fun filter(text: String) {
+        var filteredList = ArrayList<PdfModel>()
+
+        for (item in list) {
+            val pdfName = item.pdfName.toString().toLowerCase()
+            if (pdfName.contains(text.toLowerCase())) {
+                filteredList.add(item)
+            }
+        }
+        adapter.setData(filteredList)
+    }
+
+    private fun loadAllDataIntoList() {
+        adapter.setData(list)
+    }
+
+    private fun showSearchBar() {
+        tvTitle.visibility = View.GONE
+        etSearch.visibility = View.VISIBLE
+        etSearch.animation = AnimationUtils.loadAnimation(this, R.anim.grademy_translate_up)
+
+    }
+
+    private fun hideSearchBar() {
+        etSearch.visibility = View.GONE
+        tvTitle.visibility = View.VISIBLE
     }
 
     override fun onBackPressed() {
@@ -60,12 +129,15 @@ class MoreActivity : AppCompatActivity() {
         ivBack = findViewById(R.id.ivBack)
         tvTitle = findViewById(R.id.tvTitle)
         pbMoreLoader = findViewById(R.id.pbMoreLoader)
+        etSearch = findViewById(R.id.etSearch)
     }
 
-    private fun setUpRecyclerView(list : ArrayList<PdfModel>) {
+    private fun setUpRecyclerView(list: ArrayList<PdfModel>) {
+        adapter = SubjectRecyclerViewAdapter(this)
+        adapter.setData(list)
         val layoutMgr = GridLayoutManager(this, 3)
         rvMore.layoutManager = layoutMgr
-        rvMore.adapter = SubjectRecyclerViewAdapter(this, list)
+        rvMore.adapter = adapter
     }
 
 

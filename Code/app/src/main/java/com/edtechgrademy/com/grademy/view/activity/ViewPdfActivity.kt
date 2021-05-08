@@ -1,7 +1,11 @@
 package com.edtechgrademy.com.grademy.view.activity
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
@@ -37,6 +41,7 @@ class ViewPdfActivity : AppCompatActivity() {
         showPdfUsingPdfViewerLibrary()
 
     }
+
 
     private fun init() {
         pdfView = findViewById(R.id.pdfView)

@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +25,7 @@ import com.google.android.material.circularreveal.cardview.CircularRevealCardVie
 class HomeFragment : Fragment() {
 
     private lateinit var vm : HomeViewModel
+    lateinit var adapter: SubjectRecyclerViewAdapter
 
     lateinit var ctx : Context
 
@@ -36,7 +38,7 @@ class HomeFragment : Fragment() {
     lateinit var rvAlgebra : RecyclerView
     lateinit var rvGeometry : RecyclerView
 
-    lateinit var ivMoreEnglish : ImageView
+    lateinit var ivMoreEnglish : ConstraintLayout
 
     val listEnglish = ArrayList<PdfModel>()
     val listScience1 = ArrayList<PdfModel>()
@@ -72,11 +74,11 @@ class HomeFragment : Fragment() {
 //            initRecyclerView(rvGeometry, it)
         }
 
-        initRecyclerView(rvEnglish,  listEnglish)
-        initRecyclerView(rvScience1, listEnglish)
-        initRecyclerView(rvScience2, listEnglish)
-        initRecyclerView(rvAlgebra,  listEnglish)
-        initRecyclerView(rvGeometry, listEnglish)
+        initRecyclerView(rvEnglish)
+        initRecyclerView(rvScience1)
+        initRecyclerView(rvScience2)
+        initRecyclerView(rvAlgebra)
+        initRecyclerView(rvGeometry)
         
         ivMoreEnglish.setOnClickListener {
             startActivity(Intent(ctx, MoreActivity::class.java))
@@ -102,10 +104,12 @@ class HomeFragment : Fragment() {
         ivMoreEnglish = view.findViewById(R.id.ivMoreEnglish)
     }
 
-    private fun initRecyclerView(recyclerView: RecyclerView, allPdfs : ArrayList<PdfModel>) {
+    private fun initRecyclerView(recyclerView: RecyclerView) {
+        adapter = SubjectRecyclerViewAdapter(ctx)
+        adapter.setData(listEnglish)
         val layoutMgr = LinearLayoutManager(ctx, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.layoutManager = layoutMgr
-        recyclerView.adapter = SubjectRecyclerViewAdapter(ctx, allPdfs)
+        recyclerView.adapter = adapter
     }
 
 

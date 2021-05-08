@@ -2,6 +2,8 @@ package com.edtechgrademy.com.grademy.view.helpers
 
 import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -16,8 +18,10 @@ import com.edtechgrademy.com.grademy.view.activity.ViewPdfActivity
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Transformation
 
-class SubjectRecyclerViewAdapter(val context : Context, private val list : ArrayList<PdfModel>) :
+class SubjectRecyclerViewAdapter(val context : Context) :
     RecyclerView.Adapter<SubjectRecyclerViewAdapter.SubjectRecyclerViewViewHolder>() {
+
+    var list = ArrayList<PdfModel>()
 
     inner class SubjectRecyclerViewViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val thumbnail: ImageView = itemView.findViewById(R.id.ivThumbnail)
@@ -41,12 +45,21 @@ class SubjectRecyclerViewAdapter(val context : Context, private val list : Array
             Toast.makeText(context, "${pdf.pdfName}", Toast.LENGTH_LONG).show()
             val url = pdf.pdfUrl.toString()
 //            openInAnotherApp(url)
-            openInSameApp(url)
+            if(isInteretConnected())
+                openInSameApp(url)
+            else{
+                Toast.makeText(context, "Check your Internet Connection", Toast.LENGTH_LONG).show()
+            }
 
         }
     }
 
     override fun getItemCount(): Int = list.size
+
+    fun setData(filteredList: ArrayList<PdfModel>) {
+        list = filteredList
+        notifyDataSetChanged()
+    }
 
     private fun openInSameApp(url: String) {
         val intent = Intent(context, ViewPdfActivity::class.java)
@@ -59,4 +72,12 @@ class SubjectRecyclerViewAdapter(val context : Context, private val list : Array
             "application/pdf")
         context.startActivity(intent)
     }
+
+    private fun isInteretConnected(): Boolean {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val actNetwork : NetworkInfo? = cm.activeNetworkInfo
+        return actNetwork?.isConnectedOrConnecting == true
+    }
+
+
 }
