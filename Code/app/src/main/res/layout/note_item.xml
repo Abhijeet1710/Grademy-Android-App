@@ -11,7 +11,7 @@
             android:layout_width="130dp"
             android:layout_height="180dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ten"
+            android:src="@drawable/default_placeholder"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Grademy.CornerCut"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

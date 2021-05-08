@@ -34,7 +34,7 @@ class SubjectRecyclerViewAdapter(val context : Context, private val list : Array
         Picasso.get()
             .load(pdf.pdfThumbnail)
             .fit()
-            .placeholder(R.drawable.place)
+            .placeholder(R.drawable.default_placeholder)
             .into(holder.thumbnail)
 
         holder.thumbnail.setOnClickListener {
