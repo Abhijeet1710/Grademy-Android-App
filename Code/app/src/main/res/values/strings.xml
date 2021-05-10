@@ -16,4 +16,5 @@
     <string name="sub_science_two">Science 2</string>
     <string name="sub_algebra">Algebra</string>
     <string name="sub_geometry">Geometry</string>
+    <string name="typeHereToSearch">Type here to search</string>
 </resources>

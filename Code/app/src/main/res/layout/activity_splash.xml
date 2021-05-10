@@ -9,8 +9,8 @@
 
     <View
         android:id="@+id/ivG"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:background="@drawable/ic_g_white"
         app:layout_constraintBottom_toTopOf="@+id/ivGrademy"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,8 +19,8 @@
 
     <View
         android:id="@+id/ivGrademy"
-        android:layout_width="130dp"
-        android:layout_height="29dp"
+        android:layout_width="120dp"
+        android:layout_height="25dp"
         android:layout_marginBottom="50dp"
         android:background="@drawable/ic_grademy_text"
         app:layout_constraintBottom_toBottomOf="parent"

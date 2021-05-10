@@ -25,15 +25,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="10dp">
+                android:paddingVertical="7dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/sub_english"
                     android:textColor="?attr/colorOnPrimary"
-                    android:textSize="26sp"
+                    android:textSize="22sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -43,22 +42,21 @@
                     android:id="@+id/ivMoreEnglish"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginRight="10dp"
                     android:background="@drawable/morebtn_ripple"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent">
+                    app:layout_constraintTop_toTopOf="parent">
 
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_right"
                         android:background="@drawable/morebtn_ripple"
+                        android:src="@drawable/ic_right"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -68,20 +66,19 @@
                 android:id="@+id/rvEnglish"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
+                android:layoutAnimation="@anim/rv_layout_animation"
                 android:orientation="horizontal" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="10dp">
+                android:paddingVertical="8dp">
 
                 <ImageView
                     android:id="@+id/ivMoreSci1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
                     android:src="@drawable/ic_right"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -92,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/sub_science_one"
                     android:textColor="?attr/colorOnPrimary"
-                    android:textSize="26sp"
+                    android:textSize="22sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -103,21 +100,21 @@
                 android:id="@+id/rvScience1"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
+                android:layoutAnimation="@anim/rv_layout_animation"
                 android:orientation="horizontal" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="10dp">
+                android:paddingVertical="8dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/sub_science_two"
                     android:textColor="?attr/colorOnPrimary"
-                    android:textSize="26sp"
+                    android:textSize="22sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -127,7 +124,6 @@
                     android:id="@+id/ivMoreSci2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
                     android:src="@drawable/ic_right"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -138,21 +134,21 @@
                 android:id="@+id/rvScience2"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
+                android:layoutAnimation="@anim/rv_layout_animation"
                 android:orientation="horizontal" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="10dp">
+                android:paddingVertical="8dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/sub_algebra"
                     android:textColor="?attr/colorOnPrimary"
-                    android:textSize="26sp"
+                    android:textSize="22sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -173,21 +169,21 @@
                 android:id="@+id/rvAlgebra"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
+                android:layoutAnimation="@anim/rv_layout_animation"
                 android:orientation="horizontal" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="10dp">
+                android:paddingVertical="8dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/sub_geometry"
                     android:textColor="?attr/colorOnPrimary"
-                    android:textSize="26sp"
+                    android:textSize="22sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -208,6 +204,7 @@
                 android:id="@+id/rvGeometry"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
+                android:layoutAnimation="@anim/rv_layout_animation"
                 android:orientation="horizontal" />
 
 
@@ -217,9 +214,9 @@
 
     <com.google.android.material.circularreveal.cardview.CircularRevealCardView
         android:id="@+id/pbLoader"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:cardCornerRadius="25dp"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        app:cardCornerRadius="22dp"
         android:layout_marginTop="25dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

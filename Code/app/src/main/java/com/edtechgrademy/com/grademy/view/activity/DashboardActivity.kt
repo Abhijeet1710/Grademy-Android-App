@@ -100,7 +100,7 @@ class DashboardActivity : AppCompatActivity(){
         dlgLogout.setPositiveButton("Log out") { _: DialogInterface, _: Int ->
             vm.logOut()
             startActivity(Intent(this, SignupActivity::class.java))
-            finish()
+            this.finish()
         }
         dlgLogout.setNegativeButton("Cancel") { _: DialogInterface, _: Int ->
         }

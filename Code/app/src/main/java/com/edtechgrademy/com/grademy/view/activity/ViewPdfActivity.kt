@@ -19,7 +19,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.edtechgrademy.com.grademy.R
 import com.github.barteksc.pdfviewer.PDFView
 import com.google.android.material.circularreveal.cardview.CircularRevealCardView
+import com.krishna.fileloader.FileLoader
+import com.krishna.fileloader.listener.FileRequestListener
+import com.krishna.fileloader.pojo.FileResponse
+import com.krishna.fileloader.request.FileLoadRequest
 import java.io.BufferedInputStream
+import java.io.File
 import java.io.InputStream
 import java.io.UnsupportedEncodingException
 import java.net.HttpURLConnection
@@ -38,8 +43,9 @@ class ViewPdfActivity : AppCompatActivity() {
         setContentView(R.layout.activity_view_pdf)
 
         init()
-        showPdfUsingPdfViewerLibrary()
-
+//        showPdfUsingPdfViewerLibrary()
+        pbPdfLoader.visibility = View.VISIBLE
+        showPdf()
     }
 
 
@@ -47,6 +53,35 @@ class ViewPdfActivity : AppCompatActivity() {
         pdfView = findViewById(R.id.pdfView)
         pbPdfLoader = findViewById(R.id.pbPdfLoader)
         pdfUrl = intent.getStringExtra("pdf_url").toString()
+    }
+
+    private fun showPdf() {
+        FileLoader.with(this)
+            .load(pdfUrl)
+            .fromDirectory("text4", FileLoader.DIR_INTERNAL)
+            .asFile(object : FileRequestListener<File>() {
+                override fun onLoad(request: FileLoadRequest?, response: FileResponse<File>?) {
+                    val loadFile: File = response!!.body
+                    pdfView.fromFile(loadFile)
+                        .password(null)
+                        .defaultPage(0)
+                        .enableSwipe(true)
+                        .swipeHorizontal(false)
+                        .enableDoubletap(true)
+                        .spacing(5)
+                        .load()
+//                    Toast.makeText(this@ViewPdfActivity, "Success", Toast.LENGTH_SHORT).show()
+                    pbPdfLoader.visibility = View.GONE
+
+                }
+
+                override fun onError(request: FileLoadRequest?, t: Throwable?) {
+                    Toast.makeText(this@ViewPdfActivity, "Failed to Load \n Check your internet connection", Toast.LENGTH_SHORT).show()
+                    onBackPressed()
+//                    pbPdfLoader.visibility = View.GONE
+                }
+
+            })
     }
 
     private fun showPdfUsingPdfViewerLibrary() {

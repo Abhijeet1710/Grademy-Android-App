@@ -7,15 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edtechgrademy.com.grademy.R
-import com.edtechgrademy.com.grademy.controller.HomeVMFactory
-import com.edtechgrademy.com.grademy.controller.HomeViewModel
+import com.edtechgrademy.com.grademy.controller.DashboardVMFactory
+import com.edtechgrademy.com.grademy.controller.DashboardViewModel
 import com.edtechgrademy.com.grademy.model.PdfModel
 import com.edtechgrademy.com.grademy.view.activity.MoreActivity
 import com.edtechgrademy.com.grademy.view.helpers.SubjectRecyclerViewAdapter
@@ -24,7 +23,7 @@ import com.google.android.material.circularreveal.cardview.CircularRevealCardVie
 
 class HomeFragment : Fragment() {
 
-    private lateinit var vm : HomeViewModel
+    private lateinit var vm : DashboardViewModel
     lateinit var adapter: SubjectRecyclerViewAdapter
 
     lateinit var ctx : Context
@@ -81,7 +80,9 @@ class HomeFragment : Fragment() {
         initRecyclerView(rvGeometry)
         
         ivMoreEnglish.setOnClickListener {
-            startActivity(Intent(ctx, MoreActivity::class.java))
+            val intent = Intent(ctx, MoreActivity::class.java)
+            intent.putExtra("selected_subject", "English")
+            startActivity(intent)
         }
 
 
@@ -89,8 +90,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun init(view: View) {
-        val factory = HomeVMFactory()
-        vm = ViewModelProvider(this, factory).get(HomeViewModel::class.java)
+        val factory = DashboardVMFactory()
+        vm = ViewModelProvider(this, factory).get(DashboardViewModel::class.java)
 
         svMain = view.findViewById(R.id.svMain)
         pbLoader = view.findViewById(R.id.pbLoader)

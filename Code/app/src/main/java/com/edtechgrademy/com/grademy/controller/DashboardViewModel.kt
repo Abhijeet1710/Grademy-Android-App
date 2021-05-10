@@ -19,6 +19,8 @@ class DashboardViewModel(val st: String) : ViewModel() {
     var MODE: String = "SYSTEM_DEFAULT"
 
     private val mAuth = FirebaseAuth.getInstance()
+    private val db = FirebaseFirestore.getInstance()
+    val listEnglish = ArrayList<PdfModel>()
 
     fun logOut() = mAuth.signOut()
 
@@ -63,6 +65,34 @@ class DashboardViewModel(val st: String) : ViewModel() {
         mAuth.currentUser.photoUrl
 //            mAuth.currentUser.phoneNumber,
     )
+
+    fun getEnglishPdfs(myCallback: (ArrayList<PdfModel>) -> Unit) {
+
+        if (listEnglish.size != 0 || listEnglish.isNotEmpty()) {
+            myCallback(listEnglish)
+            Log.d("TAG_LIST_STATUS", "List was downloaded")
+        } else {
+            Log.d("TAG_LIST_STATUS", "List was not downloaded")
+            db.collection(Util.english)
+                .get()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+//                        val list = ArrayList<PdfModel>()
+                        for (document in task.result!!) {
+                            val pdfModel = PdfModel()
+                            pdfModel.pdfName = document.data["pdf_name"] as String
+                            pdfModel.pdfThumbnail = document.data["pdf_thumbnail"] as String
+                            pdfModel.pdfUrl = document.data["pdf_url"] as String
+                            listEnglish.add(pdfModel)
+                        }
+                        myCallback(listEnglish)
+                    } else {
+//                    toast(, "Error getting documents.", task.exception)
+                    }
+                }
+        }
+
+    }
 
 
 }

@@ -8,15 +8,16 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivThumbnail"
-            android:layout_width="130dp"
-            android:layout_height="180dp"
+            android:layout_width="110dp"
+            android:layout_height="155dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/default_placeholder"
-            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Grademy.CornerCut"
+            android:src="@drawable/three"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Grademy.CornerCut"
+            app:srcCompat="@drawable/three" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,8 +9,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topBar"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="90dp"
         android:background="?attr/colorPrimary"
+        android:elevation="6dp"
         android:paddingHorizontal="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -20,8 +21,8 @@
             android:id="@+id/ivBack"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_marginLeft="2dp"
             android:layout_marginBottom="15dp"
-            android:layout_marginLeft="5dp"
             android:background="@drawable/backbtn_ripple"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent">
@@ -42,7 +43,7 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="12dp"
             android:layout_marginBottom="25dp"
             android:text="Social Science"
             android:textColor="?attr/colorOnPrimary"
@@ -62,8 +63,8 @@
             app:layout_constraintRight_toRightOf="parent">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/ic_search"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -81,11 +82,13 @@
             android:layout_marginBottom="14dp"
             android:background="@drawable/search_back"
             android:ems="10"
-            android:hint="Search"
+            android:hint="@string/typeHereToSearch"
             android:inputType="textPersonName"
-            android:paddingHorizontal="15dp"
-            android:paddingVertical="14dp"
+            android:paddingHorizontal="17dp"
+            android:paddingVertical="12dp"
+            android:singleLine="true"
             android:textColorLink="?attr/colorOnPrimary"
+            android:textCursorDrawable="@drawable/search_cursor"
             android:textSize="14sp"
             android:textStyle="bold"
             android:visibility="gone"
@@ -95,27 +98,33 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvMore"
-        android:layout_width="0dp"
+    <HorizontalScrollView
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="?attr/colorOnPrimarySurface"
-        android:paddingVertical="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topBar" />
+        app:layout_constraintTop_toBottomOf="@+id/topBar">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMore"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </HorizontalScrollView>
 
     <com.google.android.material.circularreveal.cardview.CircularRevealCardView
         android:id="@+id/pbMoreLoader"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
         android:layout_marginTop="25dp"
-        app:cardCornerRadius="25dp"
+        app:cardCornerRadius="22dp"
+        android:visibility="visible"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topBar"
-        tools:visibility="gone">
+        app:layout_constraintTop_toBottomOf="@+id/topBar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

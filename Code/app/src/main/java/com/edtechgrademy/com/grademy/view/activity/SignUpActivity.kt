@@ -14,6 +14,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import kotlin.system.exitProcess
 
 
 class SignupActivity : AppCompatActivity() {
@@ -43,8 +44,6 @@ class SignupActivity : AppCompatActivity() {
             binding.clSignInPage.visibility = View.GONE
             binding.pbLoading.visibility = View.VISIBLE
             signIn()
-            binding.clSignInPage.visibility = View.GONE
-            binding.pbLoading.visibility = View.VISIBLE
         }
 
     }
@@ -66,9 +65,14 @@ class SignupActivity : AppCompatActivity() {
                     firebaseAuthWithGoogle(account.idToken!!)
                 } catch (e: ApiException) {
                     Toast.makeText(this, "Auth Failed \n ${e.message}", Toast.LENGTH_SHORT).show()
+                    binding.clSignInPage.visibility = View.VISIBLE
+                    binding.pbLoading.visibility = View.GONE
                 }
             }else{
                 Toast.makeText(this, "Internal Error $exception", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this, "Check your Internet Connection", Toast.LENGTH_SHORT).show()
+                binding.clSignInPage.visibility = View.VISIBLE
+                binding.pbLoading.visibility = View.GONE
             }
         }
     }
@@ -83,9 +87,15 @@ class SignupActivity : AppCompatActivity() {
                         finish()
                     } else {
                         Toast.makeText(this, "Auth failed.", Toast.LENGTH_SHORT).show()
+                        binding.clSignInPage.visibility = View.VISIBLE
+                        binding.pbLoading.visibility = View.GONE
                     }
             }
     }
 
-
+    override fun onBackPressed() {
+//        super.onBackPressed()
+        finishAffinity()
+        exitProcess(0)
+    }
 }
