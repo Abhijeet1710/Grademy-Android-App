@@ -20,7 +20,7 @@ class DashboardViewModel(val st: String) : ViewModel() {
 
     private val mAuth = FirebaseAuth.getInstance()
     private val db = FirebaseFirestore.getInstance()
-    val listEnglish = ArrayList<PdfModel>()
+    private val listEnglish = ArrayList<PdfModel>()
 
     fun logOut() = mAuth.signOut()
 
