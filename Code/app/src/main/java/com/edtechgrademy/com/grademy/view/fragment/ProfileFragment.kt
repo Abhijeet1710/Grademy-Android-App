@@ -49,10 +49,13 @@ class ProfileFragment : Fragment() {
 
     private fun loadUserOnUi() {
         user = vm.getUser()
-        userName.text = user.name.toUpperCase()
+        userName.text = user.name
         userFullName.text = user.fullName
         userEmail.text = user.email
-        Picasso.get().load(user.photoUrl).into(userProfilePic)
+        Picasso.get()
+            .load(user.photoUrl)
+            .placeholder(R.drawable.user_placeholder)
+            .into(userProfilePic)
 
     }
 

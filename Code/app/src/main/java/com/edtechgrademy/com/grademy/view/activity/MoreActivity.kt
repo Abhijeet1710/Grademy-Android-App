@@ -12,11 +12,13 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edtechgrademy.com.grademy.R
 import com.edtechgrademy.com.grademy.controller.DashboardVMFactory
 import com.edtechgrademy.com.grademy.controller.DashboardViewModel
 import com.edtechgrademy.com.grademy.model.PdfModel
+import com.edtechgrademy.com.grademy.view.helpers.AllRecyclerViewAdapter
 import com.edtechgrademy.com.grademy.view.helpers.SubjectRecyclerViewAdapter
 import com.google.android.material.circularreveal.cardview.CircularRevealCardView
 
@@ -25,7 +27,7 @@ class MoreActivity : AppCompatActivity() {
     private lateinit var vm: DashboardViewModel
 
     private var list = ArrayList<PdfModel>()
-    private lateinit var adapter: SubjectRecyclerViewAdapter
+    private lateinit var adapter: AllRecyclerViewAdapter
 
     private lateinit var rvMore: RecyclerView
     private lateinit var ivSearch: ConstraintLayout
@@ -138,9 +140,9 @@ class MoreActivity : AppCompatActivity() {
     }
 
     private fun setUpRecyclerView(list: ArrayList<PdfModel>) {
-        adapter = SubjectRecyclerViewAdapter(this)
+        adapter = AllRecyclerViewAdapter(this)
         adapter.setData(list)
-        val layoutMgr = GridLayoutManager(this, 3)
+        val layoutMgr = LinearLayoutManager(this)
         rvMore.layoutManager = layoutMgr
         rvMore.adapter = adapter
     }
