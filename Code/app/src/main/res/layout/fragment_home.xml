@@ -26,11 +26,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:paddingVertical="7dp">
+                android:layout_marginTop="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingStart="7dp"
                     android:text="@string/sub_english"
                     android:textColor="?attr/colorOnPrimary"
                     android:textSize="22sp"
@@ -39,16 +40,16 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="More"-->
-<!--                    android:padding="0"-->
-<!--                    android:textColor="@color/dark_blue"-->
-<!--                    android:textStyle="bold"-->
-<!--                    app:layout_constraintTop_toTopOf="parent"-->
-<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                    app:layout_constraintRight_toLeftOf="@+id/ivMoreEnglish"/>-->
+                <!--                <TextView-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="More"-->
+                <!--                    android:padding="0"-->
+                <!--                    android:textColor="@color/dark_blue"-->
+                <!--                    android:textStyle="bold"-->
+                <!--                    app:layout_constraintTop_toTopOf="parent"-->
+                <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--                    app:layout_constraintRight_toLeftOf="@+id/ivMoreEnglish"/>-->
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ivMoreEnglish"
@@ -77,16 +78,19 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvEnglish"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="25dp"
                 android:orientation="horizontal"
+                android:paddingStart="7dp"
+                android:paddingEnd="7dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:paddingVertical="8dp">
+                android:layout_marginHorizontal="10dp">
 
                 <ImageView
                     android:id="@+id/ivMoreSci1"
@@ -100,6 +104,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingStart="7dp"
                     android:text="@string/sub_science_one"
                     android:textColor="?attr/colorOnPrimary"
                     android:textSize="22sp"
@@ -112,18 +117,22 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvScience1"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:orientation="horizontal" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="25dp"
+                android:orientation="horizontal"
+                android:paddingStart="7dp"
+                android:paddingEnd="7dp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:paddingVertical="8dp">
+                android:layout_marginHorizontal="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingStart="7dp"
                     android:text="@string/sub_science_two"
                     android:textColor="?attr/colorOnPrimary"
                     android:textSize="22sp"
@@ -145,20 +154,24 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvScience2"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="25dp"
                 android:orientation="horizontal"
+                android:paddingStart="7dp"
+                android:paddingEnd="7dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:paddingVertical="8dp">
+                android:layout_marginHorizontal="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingStart="7dp"
                     android:text="@string/sub_algebra"
                     android:textColor="?attr/colorOnPrimary"
                     android:textSize="22sp"
@@ -181,20 +194,24 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvAlgebra"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="25dp"
                 android:orientation="horizontal"
+                android:paddingStart="7dp"
+                android:paddingEnd="7dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:paddingVertical="8dp">
+                android:layout_marginHorizontal="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingStart="7dp"
                     android:text="@string/sub_geometry"
                     android:textColor="?attr/colorOnPrimary"
                     android:textSize="22sp"
@@ -217,8 +234,12 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvGeometry"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:orientation="horizontal" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="25dp"
+                android:orientation="horizontal"
+                android:paddingStart="7dp"
+                android:paddingEnd="7dp" />
 
 
         </LinearLayout>
