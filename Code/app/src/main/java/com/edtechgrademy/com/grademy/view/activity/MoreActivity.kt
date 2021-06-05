@@ -62,6 +62,8 @@ class MoreActivity : AppCompatActivity() {
             }
         }
 
+
+
         etSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(
                 s: CharSequence?,
@@ -106,8 +108,8 @@ class MoreActivity : AppCompatActivity() {
     private fun showSearchBar() {
         tvTitle.visibility = View.GONE
         ivSearch.visibility = View.GONE
+        ivBack.visibility = View.GONE
         etSearch.visibility = View.VISIBLE
-        etSearch.animation = AnimationUtils.loadAnimation(this, R.anim.move_left)
 
     }
 
@@ -116,13 +118,18 @@ class MoreActivity : AppCompatActivity() {
         etSearch.visibility = View.GONE
         ivSearch.visibility = View.VISIBLE
         tvTitle.visibility = View.VISIBLE
-        tvTitle.animation = AnimationUtils.loadAnimation(this, R.anim.move_left)
+        ivBack.visibility = View.VISIBLE
 
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-        finish()
+        if (etSearch.visibility == View.VISIBLE) {
+            hideSearchBar()
+            loadAllDataIntoList()
+        } else {
+           super.onBackPressed()
+           finish()
+        }
     }
 
     private fun init() {

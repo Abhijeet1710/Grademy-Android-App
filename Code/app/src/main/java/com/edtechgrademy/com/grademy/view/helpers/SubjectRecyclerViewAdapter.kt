@@ -25,6 +25,7 @@ class SubjectRecyclerViewAdapter(val context : Context) :
 
     inner class SubjectRecyclerViewViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val thumbnail: ImageView = itemView.findViewById(R.id.ivThumbnail)
+        val thumbnailTitle: TextView = itemView.findViewById(R.id.tvThumbnailTitle)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubjectRecyclerViewViewHolder {
@@ -35,6 +36,7 @@ class SubjectRecyclerViewAdapter(val context : Context) :
     override fun onBindViewHolder(holder: SubjectRecyclerViewViewHolder, position: Int) {
 
         val pdf = list[position]
+        holder.thumbnailTitle.text = pdf.pdfName;
         Picasso.get()
             .load(pdf.pdfThumbnail)
             .fit()

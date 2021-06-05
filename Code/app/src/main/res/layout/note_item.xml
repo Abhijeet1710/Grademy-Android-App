@@ -5,18 +5,37 @@
     android:layout_height="wrap_content"
     android:paddingHorizontal="10dp">
 
+    <LinearLayout
+        android:layout_width="95dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/ivThumbnail"
-            android:layout_width="95dp"
-            android:layout_height="125dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/three"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Grademy.CornerCut"
-            app:srcCompat="@drawable/three" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivThumbnail"
+                android:layout_width="95dp"
+                android:layout_height="125dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/three"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Grademy.CornerCut"
+                app:srcCompat="@drawable/three" />
+
+            <TextView
+                android:id="@+id/tvThumbnailTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="Adverb"
+                android:layout_marginTop="5dp"/>
+
+    </LinearLayout>
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

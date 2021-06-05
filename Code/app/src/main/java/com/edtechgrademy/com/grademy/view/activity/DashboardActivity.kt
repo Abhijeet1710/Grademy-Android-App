@@ -80,7 +80,7 @@ class DashboardActivity : AppCompatActivity(){
         val factory = DashboardVMFactory()
         vm = ViewModelProvider(this, factory).get(DashboardViewModel::class.java)
 
-        vm.changeTheme(this, vm.getTheme(this))
+//        vm.changeTheme(this, vm.getTheme(this))
 
         toolBar = findViewById(R.id.toolbar)
         navigationView = findViewById(R.id.navigation)
