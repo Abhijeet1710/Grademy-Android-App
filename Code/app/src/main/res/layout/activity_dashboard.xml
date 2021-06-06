@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".view.activity.DashboardActivity"
     android:orientation="vertical"
-    android:elevation="20dp"
     android:id="@+id/drawer">
 
     <LinearLayout
@@ -14,12 +13,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:fitsSystemWindows="true">
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            style="@style/Widget.MaterialComponents.AppBarLayout.PrimarySurface">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
@@ -29,19 +22,13 @@
                 app:titleTextColor="?attr/colorOnPrimary"
                 android:background="?attr/colorSecondary"
                 app:navigationIcon="@drawable/ic_menu"
-                app:navigationIconTint="?attr/colorOnPrimary"
-                style="@style/Widget.MaterialComponents.AppBarLayout.PrimarySurface"
-                android:elevation="0dp"/>
-
-        </com.google.android.material.appbar.AppBarLayout>
+                app:navigationIconTint="?attr/colorOnPrimary" />
 
         <FrameLayout
             android:id="@+id/flContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1">
-
-
         </FrameLayout>
 
     </LinearLayout>
