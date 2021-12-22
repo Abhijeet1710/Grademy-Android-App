@@ -1,8 +1,3 @@
-# Demo
-
-
-
-<p><img align="center" alt="gifaa" src="https://github.com/Abhijeet1710/Grademy-Android-App/blob/main/ezgif.com-gif-maker.gif" height="1000" width="470"/></p>
 
 # Screenshots
 
