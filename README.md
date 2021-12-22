@@ -2,9 +2,7 @@
 
 
 
-https://user-images.githubusercontent.com/52439127/147069425-b7124a95-105c-4a8c-a15d-e3f7da2974da.mp4
-
-
+<p><img align="center" alt="gifaa" src="https://github.com/Abhijeet1710/Grademy-Android-App/blob/main/1VideoSpeed1640165065535.mp4" height="200" width="50"/></p>
 
 # Screenshots
 
