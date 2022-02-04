@@ -1,8 +1,5 @@
 
-# Screenshots
+# Grademy Screenshots
 
-![Group 2](https://user-images.githubusercontent.com/52439127/147067878-52edcead-3210-4e94-8e5b-75c2f20baea7.png)
-
-![Group 3](https://user-images.githubusercontent.com/52439127/147067989-4d6edde9-8152-4a16-8e8c-69598a05f1d8.png)
-
-![Group 4](https://user-images.githubusercontent.com/52439127/147068003-528c2ade-02ca-4542-863b-a0c8ecd5f484.png)
+![DayMode](https://user-images.githubusercontent.com/52439127/152468930-978b0c1b-76e8-4a58-9f59-c3177eb0f03e.jpg)
+![NightMode](https://user-images.githubusercontent.com/52439127/152468956-f3bf58c0-c11a-4370-a673-bae9c9a6e370.jpg)
